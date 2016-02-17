@@ -1,0 +1,305 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Neighborhood": "South Chicago",
+        "Murders 2014": 14,
+        "Murders 2013": 11,
+        "Murders 2012": 14,
+        "Murders 2011": 5,
+        "Murders 2010": 15,
+        "Murders 2009": 17,
+        "Murders 2008": 16
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.5511776,
+          41.7421605
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Neighborhood": "Grand Crossing",
+        "Murders 2014": 12,
+        "Murders 2013": 16,
+        "Murders 2012": 24,
+        "Murders 2011": 23,
+        "Murders 2010": 15,
+        "Murders 2009": 17,
+        "Murders 2008": 33
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.5958852,
+          41.7623109
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Neighborhood": "Woodlawn",
+        "Murders 2014": 5,
+        "Murders 2013": 7,
+        "Murders 2012": 20,
+        "Murders 2011": 12,
+        "Murders 2010": 8,
+        "Murders 2009": 10,
+        "Murders 2008": 7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.5962842,
+          41.7804946
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Neighborhood": "Hyde Park",
+        "Murders 2014": 4,
+        "Murders 2013": 2,
+        "Murders 2012": 1,
+        "Murders 2011": 2,
+        "Murders 2010": 0,
+        "Murders 2009": 1,
+        "Murders 2008": 1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.5904209,
+          41.7947748
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Neighborhood": "South Shore",
+        "Murders 2014": 16,
+        "Murders 2013": 30,
+        "Murders 2012": 21,
+        "Murders 2011": 17,
+        "Murders 2010": 18,
+        "Murders 2009": 18,
+        "Murders 2008": 25
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.576203,
+          41.7588862
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Neighborhood": "Washington Park",
+        "Murders 2014": 3,
+        "Murders 2013": 4,
+        "Murders 2012": 13,
+        "Murders 2011": 10,
+        "Murders 2010": 9,
+        "Murders 2009": 4,
+        "Murders 2008": 9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.6209572,
+          41.7946825
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Neighborhood": "Grand Boulevard",
+        "Murders 2014": 10,
+        "Murders 2013": 7,
+        "Murders 2012": 8,
+        "Murders 2011": 7,
+        "Murders 2010": 9,
+        "Murders 2009": 13,
+        "Murders 2008": 8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.6190713,
+          41.8129916
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Neighborhood": "Fuller Park",
+        "Murders 2014": 1,
+        "Murders 2013": 0,
+        "Murders 2012": 0,
+        "Murders 2011": 2,
+        "Murders 2010": 1,
+        "Murders 2009": 1,
+        "Murders 2008": 1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.6325616,
+          41.809075
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Neighborhood": "Englewood",
+        "Murders 2014": 21,
+        "Murders 2013": 24,
+        "Murders 2012": 19,
+        "Murders 2011": 28,
+        "Murders 2010": 16,
+        "Murders 2009": 22,
+        "Murders 2008": 22
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.6444037,
+          41.7798449
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Neighborhood": "New City",
+        "Murders 2014": 15,
+        "Murders 2013": 15,
+        "Murders 2012": 22,
+        "Murders 2011": 16,
+        "Murders 2010": 13,
+        "Murders 2009": 12,
+        "Murders 2008": 15
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.6599931,
+          41.8087215
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Neighborhood": "Oakland",
+        "Murders 2014": 0,
+        "Murders 2013": 0,
+        "Murders 2012": 1,
+        "Murders 2011": 2,
+        "Murders 2010": 2,
+        "Murders 2009": 1,
+        "Murders 2008": 0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.602489,
+          41.8240886
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Neighborhood": "Avalon Park",
+        "Murders 2014": 1,
+        "Murders 2013": 6,
+        "Murders 2012": 0,
+        "Murders 2011": 3,
+        "Murders 2010": 6,
+        "Murders 2009": 1,
+        "Murders 2008": 2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.5921622,
+          41.747782
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Neighborhood": "Gage Park",
+        "Murders 2014": 4,
+        "Murders 2013": 9,
+        "Murders 2012": 6,
+        "Murders 2011": 9,
+        "Murders 2010": 9,
+        "Murders 2009": 6,
+        "Murders 2008": 8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.696343,
+          41.7954677
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Neighborhood": "Chicago Lawn",
+        "Murders 2014": 19,
+        "Murders 2013": 9,
+        "Murders 2012": 22,
+        "Murders 2011": 17,
+        "Murders 2010": 16,
+        "Murders 2009": 16,
+        "Murders 2008": 19
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.6956,
+          41.7718437
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Neighborhood": "Brighton Park",
+        "Murders 2014": 2,
+        "Murders 2013": 3,
+        "Murders 2012": 7,
+        "Murders 2011": 10,
+        "Murders 2010": 7,
+        "Murders 2009": 7,
+        "Murders 2008": 6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.6994589,
+          41.8200133
+        ]
+      }
+    }
+  ]
+}
