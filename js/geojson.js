@@ -31,6 +31,9 @@ function getData(map) {
 		dataType: "json",
 		success: function(response){
 			
+			console.log(response)
+			console.log(response.features[0].properties.City)
+
 			var geojsonMarkerOptions = {
 				radius: 5,
 				fillColor: "#000",

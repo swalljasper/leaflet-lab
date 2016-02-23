@@ -1,4 +1,18 @@
 /*The CSS*/
 #map {
-	height: 700px;
+	height: 600px;
+	width: 100%;
+	display: inline-block;
+}
+
+#header {
+	height: 60px;
+}
+
+#panel {
+	height: 60px;
+}
+
+.leaflet-popup-content p {
+	margin: 0.2em 0;
 }
