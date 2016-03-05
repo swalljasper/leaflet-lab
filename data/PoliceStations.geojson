@@ -1,0 +1,122 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Cook County Hellicopter Task Force"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.75751135,
+          41.88934937
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Police Station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.6445442,
+          41.7521031
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Police Station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.6063792,
+          41.7669874
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Police Station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.5684936,
+          41.707828
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Police Station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.7085787,
+          41.7791453
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Police Station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.661469,
+          41.7796978
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Police Station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.6302414,
+          41.7990054
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Police Headquarters"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.6239389,
+          41.8303697
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Police Station"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.6466519,
+          41.8369848
+        ]
+      }
+    }
+  ]
+}

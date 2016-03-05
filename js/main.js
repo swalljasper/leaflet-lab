@@ -14,6 +14,8 @@ function createMap(){
 }).addTo(map);
 
 getData(map);
+getMoreData(map);
+
 
 }
 
@@ -26,47 +28,23 @@ function getData(map) {
 		dataType: "json",
 		success: function(data){
 
-			createPropSymbols1(data, map);
+			var attributes = processData(data);
+
+			createPropSymbols(data, map, attributes);
+			createSequenceControls(map, attributes);
 
 		}
 	});
 }	
 
-//identify data attribute and convert to proportional symbols
 
-// function createPropSymbols(data, map){
-	
-// 	console.log("ran createPropSymbols")
 
-// 	var attribute = "Murders 2014"
-
-// 	var geojsonMarkerOptions = {
-// 		radius: 8,
-// 		fillColor: "#fff",
-// 		color: "#fff",
-// 		weight: 1,
-// 		opacity: 1,
-// 		fillOpacity: 0.5 
-// 	};
-
-// 	L.geoJson(data, {
-// 		pointToLayer: function (feature, latlng) {
-// 			var attValue = Number(feature.properties[attribute]);
-			
-// 			geojsonMarkerOptions.radius = calcPropRadius(attValue);
-
-// 			return L.circleMarker(latlng, geojsonMarkerOptions);
-// 		}
-// 	}).addTo(map);
-// };
 
 
 
 //make proportional symbols change sizes based on selected years
 
 function calcPropRadius(attValue) {
-	
-	console.log("ran calcPropRadius")
 
 	var scaleFactor = 150;
 	var area = attValue * scaleFactor;
@@ -76,13 +54,11 @@ function calcPropRadius(attValue) {
 };
 
 
-//add popups
 
-function pointToLayer(feature, latlng) {
 
-	console.log("ran pointToLayer")
+function pointToLayer(feature, latlng, attributes) {
 
-	var attribute = "Murders 2014";
+	var attribute = attributes[1];
 
 	var options = {
 		fillColor: "#fff",
@@ -100,10 +76,10 @@ function pointToLayer(feature, latlng) {
 
 	var panelContent = "<p><b>Neighborhood: </b>" + feature.properties.Neighborhood + "</p>";
 
-	var year = attribute.split("_")[1];
-	panelContent += "<p><b>Murders in " + year + ": </b>" + feature.properties[attribute] + "</p>";
-
 	var popupContent = feature.properties.Neighborhood;
+
+	var year = attribute.split(" ")[1];
+	popupContent += "<p><b>Murders in " + year + ": </b>" + feature.properties[attribute] + "</p>";
 
 	layer.bindPopup(popupContent, {
 		offset: new L.Point(0,-options.radius)
@@ -117,21 +93,167 @@ function pointToLayer(feature, latlng) {
 			this.closePopup();
 		},
 		click: function(){
-			$("#panel").html(popupContent);
+			$("#popup").html(popupContent);
+			console.log(popupContent);
 		}
 	});
 
 	return layer;
 };
 
-function createPropSymbols1(data, map){
+function createPropSymbols(data, map, attributes){
 
-	console.log("ran createPropSymbols1")
 	L.geoJson(data, {
-		pointToLayer: pointToLayer
+		pointToLayer: function(feature, latlng){
+			return pointToLayer(feature, latlng, attributes);
+		}
 	}).addTo(map);
 };
 
+//create sequence controls
+
+function createSequenceControls(map, attributes){
+
+	$('#panel').append('<input class="range-slider" type="range">')
+
+	
+	$('#panel').append('<button class="skip" id="reverse">reverse</button>');
+    $('#panel').append('<button class="skip" id="forward">forward</button>');
+    $('#reverse').html('<img src="../images/reverse-arrow.png">');
+    $('#forward').html('<img src="../images/forward-arrow.png">');
+
+    $('.range-slider').on('input',function(){
+		console.log("yo")
+
+		var index = $(this).val();
+
+		updatePropSymbols(map, attributes[index]);
+		
+	});
+
+	$('.skip').click(function(){
+		var index = $('.range-slider').val();
+
+		if($(this).attr('id')== 'forward'){
+			index++;
+			index = index > 6 ? 0 : index;
+		} else if($(this).attr('id')== 'reverse'){
+			index--;
+			index = index < 0 ? 6 : index;
+		};
+
+		$('.range-slider').val(index);
+
+		$('.range-slider').attr({
+			max: 6,
+			min: 0,
+			value: 0,
+			step: 1
+		});
+
+		updatePropSymbols(map, attributes[index]);
+
+		console.log("ey")
+	});
+};
+
+//processing the data
+
+function processData(data){
+	var attributes = [];
+	var properties = data.features[0].properties;
+
+	for (var attribute in properties){
+		if (attribute.indexOf("Murders") > -1){
+			attributes.push(attribute);
+		};
+	};
+
+	return attributes;
+};
+
+function updatePropSymbols(map, attribute){
+	console.log(attribute)
+	map.eachLayer(function(layer){
+		if (layer.feature && layer.feature.properties[attribute]){
+			var props = layer.feature.properties;
+
+			var radius = calcPropRadius(props[attribute]);
+			layer.setRadius(radius);
+
+			var popupContent = "<p><b>Neighborhood:</b> " + props.Neighborhood + "</p>";
+
+			var year = attribute.split(" ")[1];
+			popupContent += "<p><b>Murders in " + year + ": </b>" + props[attribute] + "</p>";
+
+			layer.bindPopup(popupContent, {
+				offset: new L.Point(0,-radius)
+			});
+		};
+	})
+}
+
+
+
+//FIFTH OPERATOR
+
+function getMoreData(map){
+    $.ajax("../data/PoliceStations.geojson", {
+        dataType: "json",
+        success: function(response){
+
+        	OverlayPoliceStations(map, response);
+        }
+    });
+};
+
+function putOnMap(map, response){
+    console.log("ran")
+
+    		var geojsonMarkerOptions = {
+                radius: 5,
+                fillColor: "#ffff00",
+                color: "#000",
+                weight: 1,
+                opacity: 1,
+                fillOpacity: 0.8
+            };
+
+            L.geoJson(response, {
+            	pointToLayer: function(feature, latlng){
+            		return L.circleMarker(latlng, geojsonMarkerOptions);
+            	}
+            }).addTo(map);
+
+    
+};
+
+function takeOffMap(map, response){
+
+    map.removeLayer(response);
+
+    
+};
+
+function OverlayPoliceStations(map, response){
+	var x = 0
+
+	$('#overlay').append('<button class="push"> </button>');
+
+	$('.push').click(function(){
+		
+		if (x === 0){
+			putOnMap(map, response);
+			x = 1;
+
+		} else if (x === 1){
+
+			takeOffMap(map, response);
+
+		}
+
+	});
+}
 
 
 

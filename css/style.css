@@ -11,6 +11,39 @@
 
 #panel {
 	height: 60px;
+	text-align: : center;
+	display: : inline-block;
+	vertical-align: top;
+	line-height: 42px;
+	width: 25%;
+}
+
+#popup {
+	height: 60px;
+	text-align: : center;
+	display: : inline-block;
+	vertical-align: top;
+	line-height: 42px;
+	width: 25%;
+}
+
+#overlay {
+	width: 30px;
+	height: 30px;
+	background-color: #ffff00;
+}
+
+.range-slider {
+	width: 50%;
+}
+
+#forward {
+	float: right;
+	
+}
+
+#reverse {
+	float: left;
 }
 
 .leaflet-popup-content p {
