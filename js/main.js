@@ -1,5 +1,7 @@
 //load tileset into map
 
+var policeLayer;
+
 function createMap(){
 	var map = L.map('map', {
 		center: [41.8058,-87.5935],
@@ -32,6 +34,7 @@ function getData(map) {
 
 			createPropSymbols(data, map, attributes);
 			createSequenceControls(map, attributes);
+			createLegend(map, attributes);
 
 		}
 	});
@@ -74,16 +77,25 @@ function pointToLayer(feature, latlng, attributes) {
 
 	var layer = L.circleMarker(latlng, options);
 
-	var panelContent = "<p><b>Neighborhood: </b>" + feature.properties.Neighborhood + "</p>";
+	console.log(attribute);
 
-	var popupContent = feature.properties.Neighborhood;
+	var popup = new Popup(feature.properties, attribute, layer, options.radius);
 
-	var year = attribute.split(" ")[1];
-	popupContent += "<p><b>Murders in " + year + ": </b>" + feature.properties[attribute] + "</p>";
 
-	layer.bindPopup(popupContent, {
-		offset: new L.Point(0,-options.radius)
-	});
+	//createPopup(attribute, layer);
+
+	// var panelContent = "<p><b>Neighborhood: </b>" + feature.properties.Neighborhood + "</p>";
+
+	// var popupContent = feature.properties.Neighborhood;
+
+	// var year = attribute.split(" ")[1];
+	// popupContent += "<p><b>Murders in " + year + ": </b>" + feature.properties[attribute] + "</p>";
+
+	// layer.bindPopup(popupContent, {
+	// 	offset: new L.Point(0,-options.radius)
+	// });
+
+	popup.bindToLayer();
 
 	layer.on({
 		mouseover: function(){
@@ -113,6 +125,7 @@ function createPropSymbols(data, map, attributes){
 //create sequence controls
 
 function createSequenceControls(map, attributes){
+
 
 	$('#panel').append('<input class="range-slider" type="range">')
 
@@ -152,8 +165,6 @@ function createSequenceControls(map, attributes){
 		});
 
 		updatePropSymbols(map, attributes[index]);
-
-		console.log("ey")
 	});
 };
 
@@ -181,17 +192,145 @@ function updatePropSymbols(map, attribute){
 			var radius = calcPropRadius(props[attribute]);
 			layer.setRadius(radius);
 
-			var popupContent = "<p><b>Neighborhood:</b> " + props.Neighborhood + "</p>";
+			var popup = new Popup(props, attribute, layer, radius);
 
-			var year = attribute.split(" ")[1];
-			popupContent += "<p><b>Murders in " + year + ": </b>" + props[attribute] + "</p>";
+			popup.bindToLayer();
 
-			layer.bindPopup(popupContent, {
-				offset: new L.Point(0,-radius)
-			});
+			//createPopup(properties, attribute, layer, radius);
+
+			// var popupContent = "<p><b>Neighborhood:</b> " + props.Neighborhood + "</p>";
+
+			// var year = attribute.split(" ")[1];
+			// popupContent += "<p><b>Murders in " + year + ": </b>" + props[attribute] + "</p>";
+
+			// layer.bindPopup(popupContent, {
+			// 	offset: new L.Point(0,-radius)
+			// });
 		};
-	})
+	});
+
+	updateLegend(map, attribute);
 }
+
+
+// function createPopup(properties, attribute, layer, radius){
+
+// 	console.log(attribute);
+
+// 	var popupContent = "<p><b>Neighborhood:</b> " + properties.Neighborhood + "</p>";
+
+// 	var year = attribute.split(" ")[1];
+// 	popupContent += "<p><b>Murders in " + year + ": </b>" + feature.properties[attribute] + "</p>";
+
+
+// 	layer.bindPopup(popupContent, {
+// 		offset: new L.Point(0,-radius)
+// 	});
+// };
+
+function Popup(properties, attribute, layer, radius){
+    this.properties = properties;
+    this.attribute = attribute;
+    this.layer = layer;
+    this.year = attribute.split(" ")[1];
+    this.murders = this.properties[attribute];
+    this.content = "<p><b>Neighborhood:</b> " + this.properties.Neighborhood + "</p><p><b>Murders in " + this.year + ":</b> " + this.murders + "</p>";
+
+    this.bindToLayer = function(){
+        this.layer.bindPopup(this.content, {
+            offset: new L.Point(0,-radius)
+        });
+    };
+};
+
+function createLegend(map, attributes){
+	var LegendControl = L.Control.extend({
+		options: {
+			position: 'topright'
+		},
+
+		onAdd: function (map) {
+			var container = L.DomUtil.create('div', 'legend-control-container');
+			$(container).append('<div id="temporal-legend">')
+
+			var svg = '<svg id="attribute-legend" width="160px" height="60px">';
+
+			var circles = {
+				max: 20,
+				mean: 40,
+				min: 60
+			};
+
+			for (var circle in circles){
+
+				svg += '<circle class="legend-circle" id="' + circle + '" fill="#fff" fill-opacity="0.8" stroke = "#fff" cx="30"/>';
+				svg += '<text id="' + circle + '-text" x="65" y="' + circles[circle] + '"></text>';
+			};
+
+			svg += "</svg>";
+
+			$(container).append(svg);
+
+			return container;
+		}
+	});
+
+	map.addControl(new LegendControl());
+
+	updateLegend(map, attributes[0]);
+};
+
+function getCircleValues(map, attribute){
+	var min = Infinity,
+		max = -Infinity;
+
+	map.eachLayer(function(layer){
+		if (layer.feature){
+			var attributeValue = Number(layer.feature.properties[attribute]);
+
+			if (attributeValue < min){
+				min = attributeValue;
+			};
+
+			if (attributeValue > max){
+				max = attributeValue;
+			};
+		};
+	});
+
+	var mean = (max + min)/2;
+
+	return{
+		max: max,
+		mean: mean,
+		min: min,
+	};
+};
+
+function updateLegend(map, attribute){
+	var year = attribute.split(" ")[1];
+	var content = "Murders in " + year;
+
+	$('#temporal-legend').html(content);
+
+	var circleValues = getCircleValues(map, attribute);
+
+	for (var key in circleValues){
+
+		var radius = calcPropRadius(circleValues[key]);
+
+		$('#'+key).attr({
+			cy: 59 - radius,
+			r: radius
+		});
+
+		$('#'+key+'-text').text(Math.round(circleValues[key]*100)/100);
+	};
+};
+
+
+
+
 
 
 
@@ -208,7 +347,7 @@ function getMoreData(map){
 };
 
 function putOnMap(map, response){
-    console.log("ran")
+    
 
     		var geojsonMarkerOptions = {
                 radius: 5,
@@ -219,18 +358,24 @@ function putOnMap(map, response){
                 fillOpacity: 0.8
             };
 
-            L.geoJson(response, {
+            policeLayer = L.geoJson(response, {
             	pointToLayer: function(feature, latlng){
             		return L.circleMarker(latlng, geojsonMarkerOptions);
             	}
-            }).addTo(map);
+            });
+            
+            policeLayer.addTo(map);
+
+            
 
     
 };
 
 function takeOffMap(map, response){
 
-    map.removeLayer(response);
+    
+
+    map.removeLayer(policeLayer);
 
     
 };
@@ -238,7 +383,7 @@ function takeOffMap(map, response){
 function OverlayPoliceStations(map, response){
 	var x = 0
 
-	$('#overlay').append('<button class="push"> </button>');
+	$('#overlay').append('<button class="push" align="center"> </button>');
 
 	$('.push').click(function(){
 		
@@ -247,9 +392,9 @@ function OverlayPoliceStations(map, response){
 			x = 1;
 
 		} else if (x === 1){
-
+			
 			takeOffMap(map, response);
-
+			x = 0;
 		}
 
 	});

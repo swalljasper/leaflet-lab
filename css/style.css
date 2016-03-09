@@ -1,36 +1,125 @@
 /*The CSS*/
-#map {
-	height: 600px;
-	width: 100%;
-	display: inline-block;
+#background {
+
 }
 
 #header {
+	box-shadow: inset 3px 4px 5px rgb(50,77,114);
 	height: 60px;
+	background-color: rgb(10,37,74);
+	border-color: black;
+	border-radius: 5px;
+
 }
 
+h1 {
+	font-family: Futura;
+	font-size: 45px;
+	text-align: center;
+	color: #d9d9d9;
+	text-outline: 2px black;
+}
+
+
+
+#break {
+	height: 20px;
+}
+
+
+
+
+#main {
+	max-height: 600px;
+}
+
+#map {
+	height: 600px;
+	width: 75%;
+	display: inline-block;
+	padding: 5px;
+	border-width: 5px;
+	border-color: black;
+	float: left;
+	border-radius: 5px;
+}
+
+#info {
+	box-shadow: inset 3px 4px 5px rgb(50,77,114);
+	width: 22%;
+	height: 600px;
+	border-width: 5px;
+	border-color: #808080;
+	background-color: rgb(10,37,74);
+	margin-left: 78%;
+	border-radius: 5px;
+
+	font-family: Futura;
+	font-size: 15px;
+	text-align: center;
+	color: #d9d9d9;
+}
+
+h2 {
+	font-family: Futura;
+	font-size: 22px;
+	text-align: center;
+	color: #d9d9d9;
+}
+
+/*legend*/
+
+.legend-control-container {
+	background:  #808080;
+	border-radius: 5px;
+	font-family: Futura;
+	font-size: 12px
+}
+
+#temporal-legend {
+	height: 50px;
+	width: 100px;
+	border-radius: 2px;
+	border-color: #0059b3;
+	font-size: 18px;
+	text-align: center;
+}
+
+#attribute-legend {
+	border-color: white;
+	height:70px;
+	width:100px;
+	display: block;
+}
+
+#attribute-legend-content {
+	position: relative;
+}
+
+
+#break2 {
+	height: 20px;
+}
+
+
+/*bottem bar*/
+
+#bottem {
+	height: 38px;
+}
+
+/*slider*/
 #panel {
-	height: 60px;
+	height: 38px;
+	width: 200px;
 	text-align: : center;
 	display: : inline-block;
 	vertical-align: top;
 	line-height: 42px;
-	width: 25%;
-}
-
-#popup {
-	height: 60px;
-	text-align: : center;
-	display: : inline-block;
-	vertical-align: top;
-	line-height: 42px;
-	width: 25%;
-}
-
-#overlay {
-	width: 30px;
-	height: 30px;
-	background-color: #ffff00;
+	width: 20%;
+	float: left;
+	background-color: #e6e6e6;
+	border-radius: 10px;
 }
 
 .range-slider {
@@ -39,13 +128,58 @@
 
 #forward {
 	float: right;
+	border-radius: 5px;
 	
+}
+
+#forward:hover {
+	background-color: rgb(10,37,74); 
 }
 
 #reverse {
 	float: left;
+	border-radius: 5px;
 }
 
+#reverse:hover {
+	background-color: rgb(10,37,74);
+}
+
+
+/*police*/
+#overlay {
+	width: 250px;
+	height: 38px;
+	margin-left: 30%;
+	border-radius: 10px;
+	text-align: center;
+	font-family: Futura;
+	font-size: 15px;
+
+
+
+}
+
+.push {
+	background-image: url("../images/police-icon.png");
+	height: 30px;
+	width: 33px;
+	border-radius: 7px;
+	float: top;
+
+}
+
+.push:hover {
+	background-image: url("../images/police-icon-hover.png");
+	background-color: rgb(10,37,74);
+}
+
+
+
+
+/*popup*/
 .leaflet-popup-content p {
 	margin: 0.2em 0;
 }
+
+/*rgb(223,224,254)  rgb(180,180,21) */
