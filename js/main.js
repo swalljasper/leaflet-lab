@@ -1,6 +1,7 @@
 //load tileset into map
 
 var policeLayer;
+var HospitalsLayer
 
 function createMap(){
 	var map = L.map('map', {
@@ -11,12 +12,14 @@ function createMap(){
 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
 	attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
 	maxZoom: 19,
+	minZoom: 12,
 	id: 'swal94.4103e88e',
 	accessToken: 'pk.eyJ1Ijoic3dhbDk0IiwiYSI6ImNpZnk5aWdzcDR5dDl0ZWx5dDhwZW13ejAifQ.y18LYK4VbBo8evRHtqiEiw'
 }).addTo(map);
 
 getData(map);
 getMoreData(map);
+getEvenMoreData(map);
 
 
 }
@@ -77,23 +80,7 @@ function pointToLayer(feature, latlng, attributes) {
 
 	var layer = L.circleMarker(latlng, options);
 
-	console.log(attribute);
-
 	var popup = new Popup(feature.properties, attribute, layer, options.radius);
-
-
-	//createPopup(attribute, layer);
-
-	// var panelContent = "<p><b>Neighborhood: </b>" + feature.properties.Neighborhood + "</p>";
-
-	// var popupContent = feature.properties.Neighborhood;
-
-	// var year = attribute.split(" ")[1];
-	// popupContent += "<p><b>Murders in " + year + ": </b>" + feature.properties[attribute] + "</p>";
-
-	// layer.bindPopup(popupContent, {
-	// 	offset: new L.Point(0,-options.radius)
-	// });
 
 	popup.bindToLayer();
 
@@ -196,37 +183,11 @@ function updatePropSymbols(map, attribute){
 
 			popup.bindToLayer();
 
-			//createPopup(properties, attribute, layer, radius);
-
-			// var popupContent = "<p><b>Neighborhood:</b> " + props.Neighborhood + "</p>";
-
-			// var year = attribute.split(" ")[1];
-			// popupContent += "<p><b>Murders in " + year + ": </b>" + props[attribute] + "</p>";
-
-			// layer.bindPopup(popupContent, {
-			// 	offset: new L.Point(0,-radius)
-			// });
 		};
 	});
 
 	updateLegend(map, attribute);
 }
-
-
-// function createPopup(properties, attribute, layer, radius){
-
-// 	console.log(attribute);
-
-// 	var popupContent = "<p><b>Neighborhood:</b> " + properties.Neighborhood + "</p>";
-
-// 	var year = attribute.split(" ")[1];
-// 	popupContent += "<p><b>Murders in " + year + ": </b>" + feature.properties[attribute] + "</p>";
-
-
-// 	layer.bindPopup(popupContent, {
-// 		offset: new L.Point(0,-radius)
-// 	});
-// };
 
 function Popup(properties, attribute, layer, radius){
     this.properties = properties;
@@ -400,6 +361,75 @@ function OverlayPoliceStations(map, response){
 	});
 }
 
+
+
+
+
+
+
+function getEvenMoreData(map){
+    $.ajax("../data/Hospitals.geojson", {
+        dataType: "json",
+        success: function(response){
+
+        	OverlayHospitals(map, response);
+        }
+    });
+};
+
+function putOnMap1(map, response){
+    
+
+    		var geojsonMarkerOptions = {
+                radius: 7,
+                fillColor: "#0099ff",
+                color: "#000",
+                weight: 1,
+                opacity: 1,
+                fillOpacity: 0.8
+            };
+
+            HospitalsLayer = L.geoJson(response, {
+            	pointToLayer: function(feature, latlng){
+            		return L.circleMarker(latlng, geojsonMarkerOptions);
+            	}
+            });
+            
+            HospitalsLayer.addTo(map);
+
+            
+
+    
+};
+
+function takeOffMap1(map, response){
+
+    
+
+    map.removeLayer(HospitalsLayer);
+
+    
+};
+
+function OverlayHospitals(map, response){
+	var x = 0
+
+	$('#overlay2').append('<button class="push2" align="center"> </button>');
+
+	$('.push2').click(function(){
+		
+		if (x === 0){
+			putOnMap1(map, response);
+			x = 1;
+
+		} else if (x === 1){
+			
+			takeOffMap1(map, response);
+			x = 0;
+		}
+
+	});
+}
 
 
 $(document).ready(createMap);

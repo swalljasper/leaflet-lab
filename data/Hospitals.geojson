@@ -1,0 +1,44 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.6047184,
+          41.7883293
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.6214528,
+          41.8466162
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.6160367,
+          41.84659
+        ]
+      }
+    }
+  ]
+}
