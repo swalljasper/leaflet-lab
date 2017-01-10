@@ -1,8 +1,4 @@
-/*The CSS*/
-#background {
-
-}
-
+/*header*/
 #header {
 	box-shadow: inset 3px 4px 5px rgb(50,77,114);
 	height: 60px;
@@ -12,23 +8,7 @@
 
 }
 
-h1 {
-	font-family: Futura;
-	font-size: 45px;
-	text-align: center;
-	color: #d9d9d9;
-	text-outline: 2px black;
-}
-
-
-
-#break {
-	height: 20px;
-}
-
-
-
-
+/*main elements*/
 #main {
 	max-height: 600px;
 }
@@ -54,10 +34,137 @@ h1 {
 	margin-left: 78%;
 	border-radius: 5px;
 
+
 	font-family: Futura;
 	font-size: 14.5px;
 	text-align: center;
 	color: #d9d9d9;
+}
+
+
+/*slider*/
+.map-overlay {
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    position: absolute;
+    width: 25%;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    z-index: 1000; 
+}
+
+.map-overlay .map-overlay-inner {
+    background-color: rgb(10,37,74);
+    box-shadow:0 1px 2px rgba(0, 0, 0, 0.20);
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 10px;
+
+}
+
+.map-overlay h2 {
+    line-height: 24px;
+    display: block;
+    margin: 0 0 10px;
+}
+
+
+.map-overlay input {
+    background-color: transparent;
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    margin: 0;
+    cursor: ew-resize;
+}
+
+/*legend*/
+#legend {
+    position: absolute;
+    width: 22.5%;
+    top: 95px;
+    right: 10px;
+    padding: 10px;
+    z-index: 1100;
+    height: 150px;
+    background-color: rgb(10,37,74);
+    box-shadow:0 1px 2px rgba(0, 0, 0, 0.20); 
+    border-radius: 3px;
+}
+
+/*overlay buttons*/
+#overlay {
+	position: absolute;
+    width: 22.5%;
+    top: 275px;
+    right: 10px;
+    padding: 10px;
+    z-index: 1100;
+    height: 50px;
+    background-color: rgb(10,37,74);
+    box-shadow:0 1px 2px rgba(0, 0, 0, 0.20); 
+    border-radius: 3px;
+}
+
+.policeButton {
+	position: absolute;
+	left:30px;
+	top:15px;
+	background-image: url("../images/police-icon.png");
+	height: 30px;
+	width: 33px;
+	border-radius: 7px;
+	
+
+}
+
+.policeButton:hover {
+	background-image: url("../images/police-icon-hover.png");
+	background-color: rgb(10,37,74);
+}
+
+.hospitalButton {
+	position: absolute;
+	right:30px;
+	top:15px;
+	background-image: url("../images/hospital-icon.png");
+	height: 35px;
+	width: 35px;
+	border-radius: 7px;
+	
+
+}
+
+.hospitalButton:hover {
+	background-image: url("../images/hospital-icon-hover.png");
+	background-color: rgb(10,37,74);
+}
+
+/*popups*/
+.mapboxgl-popup {
+        max-width: 400px;
+        font-family: Futura;
+        font-size: 12px;
+        color: #fff;
+
+    }
+
+.mapboxgl-popup-content {
+	background-color: rgb(10,37,74);
+	box-shadow:0 1px 2px rgba(0, 0, 0, 0.20);
+}
+
+.mapboxgl-popup-tip {
+	opacity: 0;
+}
+
+/*text*/
+h1 {
+	font-family: Futura;
+	font-size: 45px;
+	text-align: center;
+	color: #d9d9d9;
+	text-outline: 2px black;
 }
 
 h2 {
@@ -70,162 +177,3 @@ h2 {
 a{
 	color: #4db8ff;
 }
-
-/*legend*/
-
-.legend-control-container {
-	background:  #808080;
-	border-radius: 5px;
-	font-family: Futura;
-	font-size: 12px
-}
-
-#temporal-legend {
-	height: 50px;
-	width: 100px;
-	border-radius: 2px;
-	border-color: #0059b3;
-	font-size: 18px;
-	text-align: center;
-}
-
-#attribute-legend {
-	border-color: white;
-	height:70px;
-	width:100px;
-	display: block;
-}
-
-#attribute-legend-content {
-	position: relative;
-}
-
-
-#break2 {
-	height: 20px;
-}
-
-
-/*bottem bar*/
-
-#container {
-	height: 60px;
-	width: 100%;
-	background-color: #d9d9d9;
-	border-radius: 5px;
-	display: inline-block;
-	vertical-align: top;
-}
-
-/*slider*/
-#panel {
-	height: 38px;
-	width: 200px;
-	text-align: : center;
-	display: : inline-block;
-	vertical-align: top;
-	line-height: 42px;
-	width: 20%;
-	float: left;
-	background-color: #e6e6e6;
-	border-radius: 10px;
-}
-
-.range-slider {
-	width: 50%;
-}
-
-#forward {
-	float: right;
-	border-radius: 5px;
-	
-}
-
-#forward:hover {
-	background-color: rgb(10,37,74); 
-}
-
-#reverse {
-	float: left;
-	border-radius: 5px;
-}
-
-#reverse:hover {
-	background-color: rgb(10,37,74);
-}
-
-
-/*police*/
-#overlay {
-	width: 250px;
-	height: 38px;
-	margin-left: 30%;
-	border-radius: 10px;
-	text-align: center;
-	font-family: Futura;
-	font-size: 15px;
-	display: : inline-block;
-	vertical-align: top;
-
-
-
-
-}
-
-.push {
-	background-image: url("../images/police-icon.png");
-	height: 30px;
-	width: 33px;
-	border-radius: 7px;
-	float: top;
-
-}
-
-.push:hover {
-	background-image: url("../images/police-icon-hover.png");
-	background-color: rgb(10,37,74);
-}
-
-
-/*hospitals*/
-#overlay2 {
-	width: 150px;
-	height: 38px;
-	margin-left: 60%;
-	border-radius: 10px;
-	text-align: center;
-	font-family: Futura;
-	font-size: 15px;
-	display: : inline-block;
-	vertical-align: top;
-
-
-
-}
-
-.push2 {
-	background-image: url("../images/hospital-icon.png");
-	height: 35px;
-	width: 35px;
-	border-radius: 7px;
-	float: top;
-
-}
-
-.push2:hover {
-	background-image: url("../images/hospital-icon-hover.png");
-	background-color: rgb(10,37,74);
-}
-
-#break3 {
-	height: 30px;
-}
-
-
-
-/*popup*/
-.leaflet-popup-content p {
-	margin: 0.2em 0;
-}
-
-/*rgb(223,224,254)  rgb(180,180,21) */
